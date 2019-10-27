@@ -6,13 +6,45 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-  <TextView
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Hello World!"
-      app:layout_constraintBottom_toBottomOf="parent"
-      app:layout_constraintLeft_toLeftOf="parent"
-      app:layout_constraintRight_toRightOf="parent"
-      app:layout_constraintTop_toTopOf="parent" />
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/fabPrincipal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:menu_fab_label="Menú"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:fab_label="Gráfico"
+            android:src="@drawable/ic_grafico"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:fab_label="Mapa"
+            android:src="@drawable/ic_mapa"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/calendario"
+            android:onClick="clicCalendario"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:fab_label="Calendario"
+            android:src="@drawable/ic_calendario"/>
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:fab_label="Video"
+            android:src="@drawable/ic_video"/>
+
+    </com.github.clans.fab.FloatingActionMenu>
+</RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
