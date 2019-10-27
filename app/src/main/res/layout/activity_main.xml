@@ -19,26 +19,28 @@
         android:layout_alignParentRight="true">
 
         <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabGrafico"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:fab_label="Gráfico"
             android:src="@drawable/ic_grafico"/>
 
         <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabMapa"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:fab_label="Mapa"
             android:src="@drawable/ic_mapa"/>
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/calendario"
-            android:onClick="clicCalendario"
+            android:id="@+id/fabCalendario"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:fab_label="Calendario"
             android:src="@drawable/ic_calendario"/>
 
         <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabVideo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:fab_label="Video"
