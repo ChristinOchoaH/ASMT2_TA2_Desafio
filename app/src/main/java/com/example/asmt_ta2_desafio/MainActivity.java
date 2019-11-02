@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     FloatingActionMenu actionMenu;
     FloatingActionButton actionButtonC;
+    FloatingActionButton actionButtonV;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,5 +31,17 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        actionButtonV = (FloatingActionButton)findViewById(R.id.fabVideo);
+        actionButtonV.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent a = new Intent(getApplicationContext(), Video.class);
+                startActivity(a);
+            }
+        });
+
+
     }
+
 }
