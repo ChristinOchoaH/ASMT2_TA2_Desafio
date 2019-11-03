@@ -1,35 +1,86 @@
 package com.example.asmt_ta2_desafio;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.Toast;
+import com.google.android.youtube.player.YouTubeBaseActivity;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayer.ErrorReason;
+import com.google.android.youtube.player.YouTubePlayer.PlaybackEventListener;
+import com.google.android.youtube.player.YouTubePlayer.PlayerStateChangeListener;
+import com.google.android.youtube.player.YouTubePlayer.Provider;
+import com.google.android.youtube.player.YouTubePlayerView;
 
-import java.util.Vector;
+public class Video extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
 
-public class Video extends AppCompatActivity  {
-
-    RecyclerView recyclerView;
-    Vector<YTVideos> ytVideos = new Vector<YTVideos>();
+    public static final String API_KEY = "AIzaSyDFTErAMtgvTBT-SfGzqCzgIhsVjryp-As";
+    public static final String VIDEO_ID = "C_qzmkmMldA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.video_main);
+        setContentView(R.layout.activity_video);
 
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager( new LinearLayoutManager(this));
-
-        ytVideos.add( new YTVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/C_qzmkmMldA\" frameborder=\"0\" allowfullscreen></iframe>") );
-        //ytVideos.add( new YTVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/KyJ71G2UxTQ\" frameborder=\"0\" allowfullscreen></iframe>") );
-        //ytVideos.add( new YTVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/y8Rr39jKFKU\" frameborder=\"0\" allowfullscreen></iframe>") );
-        //ytVideos.add( new YTVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/8Hg1tqIwIfI\" frameborder=\"0\" allowfullscreen></iframe>") );
-        //ytVideos.add( new YTVideos("<iframe width=\"100%\" height=\"100%\" src=\"https://www.youtube.com/embed/uhQ7mh_o_cM\" frameborder=\"0\" allowfullscreen></iframe>") );
-
-        VideoAdapter vA = new VideoAdapter(ytVideos);
-
-        recyclerView.setAdapter(vA);
+        /** Initializing YouTube Player View **/
+        YouTubePlayerView youTubePlayerView = (YouTubePlayerView) findViewById(R.id.youtube_player);
+        youTubePlayerView.initialize(API_KEY, this);
     }
+
+    @Override
+    public void onInitializationFailure(Provider provider, YouTubeInitializationResult result) {
+        Toast.makeText(this, "Failured to Initialize!", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean wasRestored) {
+        /** add listeners to YouTubePlayer instance **/
+        player.setPlayerStateChangeListener(playerStateChangeListener);
+        player.setPlaybackEventListener(playbackEventListener);
+
+        /** Start buffering **/
+        if (!wasRestored) {
+            player.cueVideo(VIDEO_ID);
+        }
+    }
+
+    private PlaybackEventListener playbackEventListener = new PlaybackEventListener() {
+        @Override
+        public void onBuffering(boolean arg0) {
+        }
+        @Override
+        public void onPaused() {
+        }
+        @Override
+        public void onPlaying() {
+        }
+        @Override
+        public void onSeekTo(int arg0) {
+        }
+        @Override
+        public void onStopped() {
+        }
+    };
+
+    private PlayerStateChangeListener playerStateChangeListener = new PlayerStateChangeListener() {
+        @Override
+        public void onAdStarted() {
+        }
+        @Override
+        public void onError(ErrorReason arg0) {
+        }
+        @Override
+        public void onLoaded(String arg0) {
+        }
+        @Override
+        public void onLoading() {
+        }
+        @Override
+        public void onVideoEnded() {
+        }
+        @Override
+        public void onVideoStarted() {
+        }
+    };
 }
